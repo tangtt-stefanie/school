@@ -1,9 +1,20 @@
 <template>
-  <div id="app">
-      hello school
-  </div>
+    <div id="app">
+        <router-view/>
+    </div>
 </template>
 
-<style>
+<script>
 
+    export default {
+        name: 'app',
+        components:{
+            
+        }
+    }
+</script>
+
+<style>
 </style>
+
+    
