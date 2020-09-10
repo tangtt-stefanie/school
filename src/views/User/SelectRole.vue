@@ -37,13 +37,11 @@ export default {
     methods:{
         ...mapActions('user',['Login','FetchUserRoles','SelectUserRole']),
         selectUserRole(){
-                const { SelectUserRole , $router} = this;
-                SelectUserRole({id:this.selectedId}).then((data)=> {
-                    console.log('SelectUserRole---')
-                    
-                    // $router.push('/layout')
-                });
-            }
+            const { SelectUserRole , $router} = this;
+            SelectUserRole({id:this.selectedId}).then((data)=> {
+                $router.push('/home/person/info')
+            });
+        }
     },
     mounted(){
         this.FetchUserRoles(undefined).then((data)=>{

@@ -1,3 +1,11 @@
+/*
+ * @Author: MR.T
+ * @Date: 2020-08-06 21:43:28
+ * @LastEditors: MR.T
+ * @LastEditTime: 2020-09-08 16:40:23
+ * @Description: No Description
+ * @FilePath: \article-manage\http\interceptor.js
+ */
 /**
  * 生成基础axios对象，并对请求和响应做处理
  * 前后端约定接口返回解构规范
@@ -11,10 +19,10 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 
 // const baseURL = 'http://localhost:8090/'
-const baseURL = 'http://192.168.2.102:8996/'
+const baseURL = 'http://192.168.2.100:8996/'
 
 // 创建一个独立的axios实例
-const service = axios.create({ 
+const service = axios.create({
     // 设置baseUr地址,如果通过proxy跨域可直接填写base地址
     baseURL: baseURL,
     // 定义统一的请求头部
@@ -41,12 +49,11 @@ service.interceptors.response.use((response)=>{
     // code为0，直接把结果返回回去，这样前端代码就不用在获取一次data.
     if(res.code === '0000'){
         return res;
-    }else if(res.code === 10000){
+    }else if(res.code === '0003'){
         // 10000假设是未登录状态码
         Message.warning(res.message);
         // 也可使用router进行跳转
-        window.location.href = '/#/login';
-        return res;
+        window.location.href = '/user/login';
     }else{
         // 错误显示可在service中控制，因为某些场景我们不想要展示错误
         // Message.error(res.message);

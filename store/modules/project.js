@@ -1,5 +1,13 @@
-import { getListProjectPlan } from '../storeApi/project'
-
+/*
+ * @Author: MR.T
+ * @Date: 2020-08-08 00:40:52
+ * @LastEditors: MR.T
+ * @LastEditTime: 2020-09-09 10:56:32
+ * @Description: No Description
+ * @FilePath: \article-manage\store\modules\project.js
+ */
+import { getListProjectPlan , addProjectPlan , editProjectPlan , deleteProjectPlan} from '../storeApi/project'
+import { promise } from '../../util/util'
 
 const state={
     projectPlanList:'',
@@ -25,13 +33,24 @@ const mutations={
 };
 
 const actions={
-    // 查询教科研项目计划列表
-    GetListProjectPlan ({ commit,state }, formLine) {
-        return getListProjectPlan(formLine).then(response => {
-                resolve(response)
-            }).catch(error => {
-                reject(error)
-            })
+    // 查询集团项目计划列表
+    GetListProjectPlan ({ commit,state }, params) {
+        return promise(getListProjectPlan,params,)
+    },
+
+    // 新增项目计划
+    AddProjectPlan ({ commit,state }, params) {
+        return promise(addProjectPlan,params,)
+    },
+
+    // 新增项目计划
+    EditProjectPlan ({ commit,state }, params) {
+        return promise(editProjectPlan,params,)
+    },
+
+    // 删除计划
+    DeleteProjectPlan ({ commit,state }, params) {
+        return promise(deleteProjectPlan,params,)
     },
 
 };
